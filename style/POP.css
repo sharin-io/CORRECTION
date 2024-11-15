@@ -138,18 +138,19 @@ body {
     margin-right: 0.5rem;
 }
 
-/* Tooltip */
-.tooltip {
+.POPtooltip {
     position: absolute;
-    padding: 0.75rem;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    pointer-events: none;
-    font-size: 0.875rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    /* Smooth fade-out */
+    opacity: 0;
     z-index: 1000;
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

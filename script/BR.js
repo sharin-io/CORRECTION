@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Select SVG and create tooltip
     const svg = d3.select("#BR");
-    const tooltip = d3.select("#tooltip");
+    const tooltip = d3.select(".BRtooltip");
 
     // Debug check if elements exist
     if (!svg.node()) {
@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load data with error handling
     Promise.all([
-        d3.json("asia.geojson").catch(error => {
+        d3.json("../asia.geojson").catch(error => {
             console.error('Error loading GeoJSON:', error);
             throw new Error('Failed to load map data');
         }),
-        d3.csv("BR.csv").catch(error => {
+        d3.csv("../data/BR.csv").catch(error => {
             console.error('Error loading CSV:', error);
             throw new Error('Failed to load birth rate data');
         })

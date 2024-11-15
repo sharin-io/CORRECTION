@@ -97,7 +97,7 @@ function initializeVisualization() {
   // Create tooltip with enhanced styling
   const tooltip = d3.select('body')
     .append('div')
-    .attr('class', 'tooltip')
+    .attr('class', 'POPtooltip')
     .style('opacity', 0)
     .style('position', 'absolute')
     .style('background', 'rgba(255, 255, 255, 0.9)')
@@ -204,7 +204,7 @@ function initializeVisualization() {
   }
 }
 function handleMouseOver(event, d) {
-  const tooltip = d3.select('.tooltip');
+  const tooltip = d3.select('.POPtooltip');
   const insightPanel = document.getElementById('insight-panel');
 
   // Tooltip transition
@@ -251,8 +251,8 @@ function handleMouseOver(event, d) {
 }
 
 function handleMouseOut(event, d) {
-  // Smooth tooltip fadeout
-  d3.select('.tooltip')
+  // Smooth tooltip fade-out
+  d3.select('.POPtooltip') // Corrected class name
     .transition()
     .duration(500)
     .style('opacity', 0);
@@ -265,7 +265,10 @@ function handleMouseOut(event, d) {
     .style('stroke-width', 1);
 
   // Hide insight panel
-  document.getElementById('insight-panel').classList.add('hidden');
+  const insightPanel = document.getElementById('insight-panel');
+  if (insightPanel) {
+    insightPanel.classList.add('hidden');
+  }
 }
 
 
