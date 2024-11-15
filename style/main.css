@@ -26,7 +26,8 @@
     /* Pointer cursor on hover */
 }
 
-.BRtooltip {
+.BRtooltip,
+.POPtooltip {
     position: absolute;
     background-color: white;
     padding: 10px;
@@ -43,19 +44,16 @@
     white-space: nowrap;
 }
 
-.POPtooltip {
+
+.LEMtooltip {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     pointer-events: none;
-    transition: opacity 0;
-    /* Smooth fade-out */
-    opacity: 0;
-    z-index: 1000;
+    transition: opacity 0.3s;
 }
-
 
 
 .chart-container-compact {
@@ -92,12 +90,10 @@
     /* Ensure the width fills the container */
 }
 
-#LEM {
-    max-width: 100%;
-    /* Makes sure SVG is responsive */
-    max-height: 100%;
-    /* Adjust as needed */
-}
+
+
+
+
 
 .visualization-card:hover {
     transform: translateY(-1px);
