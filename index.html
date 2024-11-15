@@ -9,7 +9,7 @@
     <meta name="author" content="SHIN THANT THI RI, YADANAR THEINT">
     <meta name="keywords" content="Data Visualisation, HTML, CSS, JavaScript" />
 
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="main.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <title>ASEAN Health Visualization</title>
@@ -47,13 +47,15 @@
                 </header>
 
                 <!-- Interactive Map -->
-                <a href="html/BR.html">
+                <a href="BR.html">
                     <figure class="map-container mb-8" aria-label="ASEAN region map">
                         <article class="visualization-card p-6 mt-6">
                             <figure class="chart-container" aria-label="Life Expectancy Heatmap">
                                 <figcaption class="sr-only">Interactive map showing health metrics across ASEAN
                                     countries</figcaption>
-                                <img src="chartpic/map.png" alt="ASEAN Region Map" />
+                                <script type="module" src="BR.js"></script>
+                                <svg id="BR"></svg>
+                                <div id="tooltip" class="tooltip"></div>
                             </figure>
                         </article>
                     </figure>
@@ -89,21 +91,7 @@
             <div class="max-w-7xl mx-auto px-4">
                 <h2 id="viz-title" class="text-2xl font-bold mb-8">Interactive Visualizations</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <a href="html/LET.html">
-                        <article class="visualization-card p-6 mt-6">
-                            <h3 class="text-lg font-semibold mb-4">Life Expectancy Heatmap (2013-2022)</h3>
-                            <p class="text-gray-600 mb-4">Explore the variations in life expectancy across ASEAN
-                                countries
-                                from 2013 to 2022 with this interactive heatmap.</p>
-                            <figure class="chart-container" aria-label="Life Expectancy Heatmap">
-                                <figcaption class="sr-only">Heatmap showing life expectancy trends for ASEAN countries
-                                    from
-                                    2013 to 2022</figcaption>
-                                <div id="LET"></div>
-                            </figure>
-                        </article>
-                    </a>
-                    <a href="html/POP.html">
+                    <a href="POP.html">
                         <article class="visualization-card p-6 mt-6">
                             <h3 class="text-lg font-semibold mb-4">Population Growth in ASEAN Nations (2003-2023)</h3>
                             <p class="text-gray-600 mb-4">Explore the population growth trends across ASEAN countries
@@ -111,67 +99,77 @@
                             <figure class="chart-container" aria-label="Population Growth Chart">
                                 <figcaption class="sr-only">Interactive chart showing population growth trends
                                     for ASEAN countries from 2003 to 2023</figcaption>
-                                <img src="chartpic/population.png" alt="Population" />
-                                <div id="visualization"></div>
-                                <div class="tooltip" style="position: absolute; opacity: 0;"></div>
+                                <!-- Introduction Alert -->
+                                <div id="intro-alert" class="alert">
+                                    <div class="alert-icon">ℹ️</div>
+                                    <p>Explore ASEAN's population dynamics through this interactive visualization.
+                                        Hover over regions to uncover insights about population distribution and growth
+                                        rates.</p>
+                                    <button class="close-btn" onclick="closeIntro()">×</button>
+                                </div>
+
+                                <!-- Main Visualization Card -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1>Population Growth in ASEAN Nations (2003-2023)</h1>
+                                        <p class="subtitle">Explore the population growth trends across ASEAN countries
+                                            from 2003 to 2023 with this interactive circle chart. Hover over the
+                                            countries to
+                                            uncover insights about population size and growth rates.</p>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <!-- Visualization container -->
+                                        <div id="visualization"></div>
+                                        <!-- Tooltip -->
+                                        <div class="tooltip" style="position: absolute; opacity: 0;"></div>
+
+                                        <!-- Insight Panel -->
+                                        <div id="insight-panel" class="insight-panel hidden">
+                                            <h3 class="insight-title">Regional Highlights</h3>
+                                            <p class="insight-content">Key trends and observations will display here
+                                                based on user
+                                                interaction.
+                                            </p>
+                                        </div>
+                                        <!-- Description -->
+                                        <div class="observations">
+                                            <h3>Description</h3>
+                                            <p>This dataset contains annual population figures for ten ASEAN countries
+                                                from 2003 to 2023.
+                                                The data covers the following countries: Brunei Darussalam, Cambodia,
+                                                Indonesia, Laos,
+                                                Malaysia, Myanmar, the Philippines, Singapore, Thailand, and Vietnam.
+                                                For each country,
+                                                population figures are provided for each year, starting from 2003 up to
+                                                2023. The dataset
+                                                allows for trend analysis, highlighting population growth over the
+                                                years. It is valuable for
+                                                understanding demographic changes, urbanization patterns, and planning
+                                                for healthcare,
+                                                infrastructure, and other essential services in these countries.
+                                        </div>
+                                        <!-- Key Observations -->
+                                        <div class="observations">
+                                            <h3>Key Observations</h3>
+                                            <ul>
+                                                <li>Population size is represented by circle area</li>
+                                                <li>Darker shades indicate higher population density</li>
+                                                <li>Growth rates vary significantly across the region</li>
+                                                <li>Singapore shows the highest growth rate despite a smaller population
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Legend Section -->
+                                        <div id="legend"></div>
+
+                                    </div>
                             </figure>
                         </article>
                     </a>
 
                 </div>
-            </div>
-        </section>
-        <!-- Gender Analysis Section -->
-        <section id="analysis" class="py-8 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-2xl font-bold mb-6">Gender-Based Analysis</h2>
-
-                <!-- Male Life Expectancy -->
-                <a href="html/LEM.html">
-                    <!-- Population Growth Bubble Chart -->
-                    <article class="visualization-card p-6 mt-6">
-                        <h3 class="text-lg font-semibold mb-4">Male Life Expectancy (2013-2022)
-                        </h3>
-                        <p class="text-gray-600 mb-4">Explore the Male Life Expectancy trends
-                            across ASEAN countries
-                            from
-                            2013 to 2022 with
-                            this interactive Radial chart.</p>
-                        <figure class="chart-container" aria-label="Male Life Expectancy Chart">
-                            <figcaption class="sr-only">Radial chart showing life-expectancy of
-                                Male for ASEAN
-                                countries from 2003 to
-                                2023</figcaption>
-                            <div class="card-content">
-                                <svg id="LEM" width="1500" height="600"></svg>
-                                <div id="legend"></div>
-                            </div>
-                        </figure>
-                    </article>
-                </a>
-
-                <!-- Female Life Expectancy -->
-                <a href="html/LEF.html">
-                    <!-- Population Growth Bubble Chart -->
-                    <article class="visualization-card p-6 mt-6">
-                        <h3 class="text-lg font-semibold mb-4">Female Life Expectancy
-                            (2013-2022)</h3>
-                        <p class="text-gray-600 mb-4">Explore the Female Life Expectancy trends
-                            across ASEAN countries
-                            from
-                            2013 to 2022 with
-                            this interactive Line chart.</p>
-                        <figure class="chart-container" aria-label="Male Life Expectancy Chart">
-                            <figcaption class="sr-only">Line chart showing life-expectancy of
-                                Female for ASEAN
-                                countries from 2013 to
-                                2022</figcaption>
-                            <div id="LEF" width="1500" height="600"></div>
-                        </figure>
-                        <div class="tooltip"></div>
-                    </article>
-                </a>
-            </div>
             </div>
         </section>
         <!-- Insights Section -->
@@ -233,11 +231,7 @@
     </footer>
     <!-- script -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script type="module" src="script/LEF.js"></script>
-    <script type="module" src="script/LET.js"></script>
-    <script type="module" src="script/LEM.js"></script>
-    <script type="module" src="script/BR.js"></script>
-    <script type="module" src="script/POP.js"></script>
+    <script type="module" src="POP.js"></script>
 
 
 </body>
