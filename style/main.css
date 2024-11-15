@@ -2,6 +2,23 @@
     transition: all 0.3s ease
 }
 
+.same-height-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensures the card fills the container */
+}
+
+#visualizations .same-height-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 450px;
+    /* Set a minimum height for the cards */
+    flex-grow: 1;
+    /* Make sure cards grow to fill available space */
+}
+
 .visualization-card {
     background: white;
     border-radius: 8px;
@@ -27,7 +44,8 @@
 }
 
 .BRtooltip,
-.POPtooltip {
+.POPtooltip,
+.LETtooltip {
     position: absolute;
     background-color: white;
     padding: 10px;

@@ -92,28 +92,37 @@
             <div class="max-w-7xl mx-auto px-4">
                 <h2 id="viz-title" class="text-2xl font-bold mb-8">Interactive Visualizations</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <a href="html/LET.html">
+                        <article class="visualization-card p-6 mt-6 same-height-card">
+                            <h3 class="text-lg font-semibold mb-4">Life Expectancy Heatmap (2013-2022)</h3>
+                            <p class="text-gray-600 mb-4">Explore the variations in life expectancy across ASEAN
+                                countries
+                                from 2013 to 2022 with this interactive heatmap.</p>
+                            <figure class="chart-container" aria-label="Life Expectancy Heatmap">
+                                <figcaption class="sr-only">Heatmap showing life expectancy trends for ASEAN countries
+                                    from
+                                    2013 to 2022</figcaption>
+                                <div id="LET"></div>
+                                <script type="module" src="script/LET.js"></script>
+                            </figure>
+                        </article>
+                    </a>
                     <a href="html/POP.html">
-                        <article class="visualization-card p-6 mt-6">
+                        <article class="visualization-card p-6 mt-6 same-height-card">
                             <h3 class="text-lg font-semibold mb-4">Population Growth in ASEAN Nations (2003-2023)</h3>
                             <p class="text-gray-600 mb-4">Explore the population growth trends across ASEAN countries
                                 from 2003 to 2023 with this interactive bubble chart.</p>
                             <figure class="chart-container" aria-label="Population Growth Chart">
                                 <figcaption class="sr-only">Interactive chart showing population growth trends
                                     for ASEAN countries from 2003 to 2023</figcaption>
-
-                                <script type="module" src="script/POP.js"></script>
                                 <div class="card-content">
                                     <!-- Visualization container -->
+                                    <script type="module" src="script/POP.js"></script>
                                     <div id="visualization"></div>
-                                    <!-- Tooltip -->
-                                    <div class="tooltip" style="position: absolute; opacity: 0;"></div>
-                                    <!-- Legend Section -->
-                                    <div id="legend"></div>
                                 </div>
                             </figure>
                         </article>
                     </a>
-
                 </div>
             </div>
         </section>

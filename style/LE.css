@@ -13,7 +13,6 @@ body {
 }
 
 .container {
-    max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -77,13 +76,29 @@ body {
 
 
 
+.LETooltip {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    pointer-events: none;
+    font-size: 12px;
+    opacity: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.2s ease;
+    max-width: 200px;
+    /* Limit the width of the tooltip for readability */
+    white-space: nowrap;
+}
 
 /* Tooltip */
 .LEMtooltip {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     pointer-events: none;
     transition: opacity 0.3s;
