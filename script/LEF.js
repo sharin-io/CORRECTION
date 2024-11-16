@@ -123,7 +123,7 @@ const data = {
 };
 
 const margin = { top: 50, right: 130, bottom: 50, left: 130 }; // Increase right margin
-const width = 1300 - margin.left - margin.right;
+const width = 1000 - margin.left - margin.right;
 const height = 700 - margin.top - margin.bottom;
 
 // Create SVG
